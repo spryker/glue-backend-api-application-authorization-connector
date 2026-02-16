@@ -34,9 +34,9 @@ class DefaultAuthorizationStrategyAwareResourceRoutePluginConfigExtractorStrateg
         GlueRequestTransfer $glueRequestTransfer,
         ResourceInterface $resource
     ): ?RouteAuthorizationConfigTransfer {
-        /** @var \Spryker\Glue\GlueApplicationAuthorizationConnectorExtension\Dependency\Plugin\DefaultAuthorizationStrategyAwareResourceRoutePluginInterface $defaultAuthorizationStrategyAwareResourceRoutePlugin */
         $defaultAuthorizationStrategyAwareResourceRoutePlugin = $resource;
 
+        /** @phpstan-ignore method.notFound */
         return $defaultAuthorizationStrategyAwareResourceRoutePlugin->getRouteAuthorizationDefaultConfiguration();
     }
 }

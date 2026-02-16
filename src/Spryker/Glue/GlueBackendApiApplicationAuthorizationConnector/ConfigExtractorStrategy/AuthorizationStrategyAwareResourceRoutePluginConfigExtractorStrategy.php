@@ -36,9 +36,9 @@ class AuthorizationStrategyAwareResourceRoutePluginConfigExtractorStrategy imple
     ): ?RouteAuthorizationConfigTransfer {
         $method = $glueRequestTransfer->getMethodOrFail();
 
-        /** @var \Spryker\Glue\GlueApplicationAuthorizationConnectorExtension\Dependency\Plugin\AuthorizationStrategyAwareResourceRoutePluginInterface $authorizationStrategyAwareResourceRoutePlugin */
         $authorizationStrategyAwareResourceRoutePlugin = $resource;
 
+        /** @phpstan-ignore method.notFound */
         $routeAuthorizationConfigTransfers = $authorizationStrategyAwareResourceRoutePlugin->getRouteAuthorizationConfigurations();
 
         return $routeAuthorizationConfigTransfers[$method] ?? null;

@@ -61,7 +61,7 @@ class GlueBackendApiApplicationAuthorizationConnectorFactory extends AbstractFac
     }
 
     /**
-     * @return array<\Spryker\Glue\GlueBackendApiApplicationAuthorizationConnector\ConfigExtractorStrategy\ConfigExtractorStrategyInterface>
+     * @return list<\Spryker\Glue\GlueBackendApiApplicationAuthorizationConnector\ConfigExtractorStrategy\ConfigExtractorStrategyInterface>
      */
     public function getConfigExtractorStrategies(): array
     {
