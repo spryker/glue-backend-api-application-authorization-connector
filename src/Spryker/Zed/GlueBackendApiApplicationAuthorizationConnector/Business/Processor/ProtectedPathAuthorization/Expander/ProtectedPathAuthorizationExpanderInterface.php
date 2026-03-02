@@ -11,11 +11,6 @@ use Generated\Shared\Transfer\ApiApplicationSchemaContextTransfer;
 
 interface ProtectedPathAuthorizationExpanderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ApiApplicationSchemaContextTransfer $apiApplicationSchemaContextTransfer
-     *
-     * @return \Generated\Shared\Transfer\ApiApplicationSchemaContextTransfer
-     */
     public function expandApiApplicationSchemaContext(
         ApiApplicationSchemaContextTransfer $apiApplicationSchemaContextTransfer
     ): ApiApplicationSchemaContextTransfer;

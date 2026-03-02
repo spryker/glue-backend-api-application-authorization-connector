@@ -22,9 +22,6 @@ use Spryker\Zed\GlueBackendApiApplicationAuthorizationConnector\Business\GlueBac
  */
 class GlueBackendApiApplicationAuthorizationConnectorFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Glue\GlueBackendApiApplicationAuthorizationConnector\Processor\AuthorizationValidator\AuthorizationValidatorInterface
-     */
     public function createAuthorizationValidator(): AuthorizationValidatorInterface
     {
         return new AuthorizationValidator(
@@ -36,25 +33,16 @@ class GlueBackendApiApplicationAuthorizationConnectorFactory extends AbstractFac
         );
     }
 
-    /**
-     * @return \Spryker\Glue\GlueBackendApiApplicationAuthorizationConnector\ConfigExtractorStrategy\ConfigExtractorStrategyInterface
-     */
     public function createAuthorizationStrategyAwareResourceRoutePluginConfigExtractorStrategy(): ConfigExtractorStrategyInterface
     {
         return new AuthorizationStrategyAwareResourceRoutePluginConfigExtractorStrategy();
     }
 
-    /**
-     * @return \Spryker\Glue\GlueBackendApiApplicationAuthorizationConnector\ConfigExtractorStrategy\ConfigExtractorStrategyInterface
-     */
     public function createDefaultAuthorizationStrategyAwareResourceRoutePluginConfigExtractorStrategy(): ConfigExtractorStrategyInterface
     {
         return new DefaultAuthorizationStrategyAwareResourceRoutePluginConfigExtractorStrategy();
     }
 
-    /**
-     * @return \Spryker\Glue\GlueBackendApiApplicationAuthorizationConnector\ConfigExtractorStrategy\ConfigExtractorStrategyInterface
-     */
     public function createGenericResourceAuthorizationConfigExtractorStrategy(): ConfigExtractorStrategyInterface
     {
         return new GenericResourceAuthorizationConfigExtractorStrategy();
@@ -72,17 +60,11 @@ class GlueBackendApiApplicationAuthorizationConnectorFactory extends AbstractFac
         ];
     }
 
-    /**
-     * @return \Spryker\Glue\GlueBackendApiApplicationAuthorizationConnector\Dependency\Facade\GlueBackendApiApplicationAuthorizationConnectorToAuthorizationFacadeInterface
-     */
     public function getAuthorizationFacade(): GlueBackendApiApplicationAuthorizationConnectorToAuthorizationFacadeInterface
     {
         return $this->getProvidedDependency(GlueBackendApiApplicationAuthorizationConnectorDependencyProvider::FACADE_AUTHORIZATION);
     }
 
-    /**
-     * @return \Spryker\Zed\GlueBackendApiApplicationAuthorizationConnector\Business\GlueBackendApiApplicationAuthorizationConnectorFacadeInterface
-     */
     public function getGlueBackendApiApplicationAuthorizationConnectorFacade(): GlueBackendApiApplicationAuthorizationConnectorFacadeInterface
     {
         return $this->getProvidedDependency(GlueBackendApiApplicationAuthorizationConnectorDependencyProvider::FACADE_GLUE_BACKEND_API_APPLICATION_AUTHORIZATION_CONNECTOR);

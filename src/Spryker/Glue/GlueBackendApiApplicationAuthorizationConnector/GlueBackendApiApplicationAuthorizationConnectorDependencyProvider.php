@@ -36,11 +36,6 @@ class GlueBackendApiApplicationAuthorizationConnectorDependencyProvider extends 
      */
     public const PLUGINS_PROTECTED_ROUTE_AUTHORIZATION_CONFIG_PROVIDER = 'PLUGINS_PROTECTED_ROUTE_AUTHORIZATION_CONFIG_PROVIDER';
 
-    /**
-     * @param \Spryker\Glue\Kernel\Backend\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Backend\Container
-     */
     public function provideBackendDependencies(Container $container): Container
     {
         $container = parent::provideBackendDependencies($container);
@@ -52,11 +47,6 @@ class GlueBackendApiApplicationAuthorizationConnectorDependencyProvider extends 
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Backend\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Backend\Container
-     */
     protected function addAuthorizationFacade(Container $container): Container
     {
         $container->set(static::FACADE_AUTHORIZATION, function (Container $container) {
@@ -66,11 +56,6 @@ class GlueBackendApiApplicationAuthorizationConnectorDependencyProvider extends 
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Backend\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Backend\Container
-     */
     protected function addGlueBackendApiApplicationAuthorizationConnectorFacade(Container $container): Container
     {
         // phpcs:ignore
@@ -81,11 +66,6 @@ class GlueBackendApiApplicationAuthorizationConnectorDependencyProvider extends 
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Backend\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Backend\Container
-     */
     protected function addAuthorizationRequestExpanderPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_AUTHORIZATION_REQUEST_EXPANDER, function (Container $container) {
@@ -103,11 +83,6 @@ class GlueBackendApiApplicationAuthorizationConnectorDependencyProvider extends 
         return [];
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Backend\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Backend\Container
-     */
     protected function addProtectedRouteAuthorizationConfigProviderPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_PROTECTED_ROUTE_AUTHORIZATION_CONFIG_PROVIDER, function (Container $container) {

@@ -12,17 +12,7 @@ use Generated\Shared\Transfer\RouteTransfer;
 
 interface ProtectedPathAuthorizationCheckerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\AuthorizationRequestTransfer $authorizationRequestTransfer
-     *
-     * @return bool
-     */
     public function authorize(AuthorizationRequestTransfer $authorizationRequestTransfer): bool;
 
-    /**
-     * @param \Generated\Shared\Transfer\RouteTransfer $routeTransfer
-     *
-     * @return bool
-     */
     public function isProtected(RouteTransfer $routeTransfer): bool;
 }

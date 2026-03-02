@@ -19,22 +19,11 @@ class GenericResourceAuthorizationConfigExtractorStrategy implements ConfigExtra
      */
     protected const STRATEGIES_AUTHORIZATION = '_authorization_strategies';
 
-    /**
-     * @param \Spryker\Glue\GlueApplicationExtension\Dependency\Plugin\ResourceInterface $resource
-     *
-     * @return bool
-     */
     public function isApplicable(ResourceInterface $resource): bool
     {
         return true;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Spryker\Glue\GlueApplicationExtension\Dependency\Plugin\ResourceInterface $resource
-     *
-     * @return \Generated\Shared\Transfer\RouteAuthorizationConfigTransfer|null
-     */
     public function extractRouteAuthorizationConfigTransfer(
         GlueRequestTransfer $glueRequestTransfer,
         ResourceInterface $resource

@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\AuthorizationResponseTransfer;
 
 interface GlueBackendApiApplicationAuthorizationConnectorToAuthorizationFacadeInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\AuthorizationRequestTransfer $authorizationRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\AuthorizationResponseTransfer
-     */
     public function authorize(AuthorizationRequestTransfer $authorizationRequestTransfer): AuthorizationResponseTransfer;
 }

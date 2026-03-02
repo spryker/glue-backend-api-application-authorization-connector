@@ -19,9 +19,6 @@ use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
  */
 class GlueBackendApiApplicationAuthorizationConnectorBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \Spryker\Zed\GlueBackendApiApplicationAuthorizationConnector\Business\Processor\ProtectedPathAuthorization\Checker\ProtectedPathAuthorizationCheckerInterface
-     */
     public function createProtectedPathAuthorizationChecker(): ProtectedPathAuthorizationCheckerInterface
     {
         return new ProtectedPathAuthorizationChecker(
@@ -30,9 +27,6 @@ class GlueBackendApiApplicationAuthorizationConnectorBusinessFactory extends Abs
         );
     }
 
-    /**
-     * @return \Spryker\Zed\GlueBackendApiApplicationAuthorizationConnector\Business\Processor\ProtectedPathAuthorization\Expander\ProtectedPathAuthorizationExpanderInterface
-     */
     public function createProtectedPathAuthorizationExpander(): ProtectedPathAuthorizationExpanderInterface
     {
         return new ProtectedPathAuthorizationExpander($this->createProtectedPathAuthorizationChecker());

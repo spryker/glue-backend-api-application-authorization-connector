@@ -25,11 +25,6 @@ class GlueBackendApiApplicationAuthorizationConnectorToAuthorizationFacadeBridge
         $this->authorizationFacade = $authorizationFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\AuthorizationRequestTransfer $authorizationRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\AuthorizationResponseTransfer
-     */
     public function authorize(AuthorizationRequestTransfer $authorizationRequestTransfer): AuthorizationResponseTransfer
     {
         return $this->authorizationFacade->authorize($authorizationRequestTransfer);

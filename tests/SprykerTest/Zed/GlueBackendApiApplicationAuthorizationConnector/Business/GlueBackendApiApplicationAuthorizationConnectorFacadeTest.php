@@ -65,9 +65,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
      */
     protected const METHODS = 'methods';
 
-    /**
-     * @return void
-     */
     public function testAuthorizeReturnsTrueForNotProtectedEndpoint(): void
     {
         // Arrange
@@ -85,9 +82,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertTrue($result);
     }
 
-    /**
-     * @return void
-     */
     public function testAuthorizeReturnsFalseForProtectedEndpointWhichDoesNotContainMethodData(): void
     {
         // Arrange
@@ -108,9 +102,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertFalse($result);
     }
 
-    /**
-     * @return void
-     */
     public function testAuthorizeReturnsFalseForProtectedEndpointWhichDoesNotContainPathData(): void
     {
         // Arrange
@@ -131,9 +122,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertFalse($result);
     }
 
-    /**
-     * @return void
-     */
     public function testAuthorizeReturnsFalseForProtectedEndpointWhenMethodIsProtectedByPathDoesNotContainValidToken(): void
     {
         // Arrange
@@ -154,9 +142,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertFalse($result);
     }
 
-    /**
-     * @return void
-     */
     public function testAuthorizeReturnsTrueForProtectedEndpointWhenMethodIsProtectedByPath(): void
     {
         // Arrange
@@ -181,9 +166,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertTrue($result);
     }
 
-    /**
-     * @return void
-     */
     public function testAuthorizeReturnsFalseForProtectedEndpointWhenMethodIsProtectedByRegularExpressionAndDoesNotContainValidToken(): void
     {
         // Arrange
@@ -207,9 +189,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertFalse($result);
     }
 
-    /**
-     * @return void
-     */
     public function testAuthorizeReturnsTrueForProtectedEndpointWhenMethodIsProtectedByRegularExpression(): void
     {
         // Arrange
@@ -233,9 +212,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertTrue($result);
     }
 
-    /**
-     * @return void
-     */
     public function testIsProtectedWhenMethodIsProtectedByTheFullyQualifiedPathName(): void
     {
         // Arrange
@@ -255,9 +231,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertTrue($result);
     }
 
-    /**
-     * @return void
-     */
     public function testIsProtectedWhenMethodIsNotProtectedByTheFullyQualifiedPathName(): void
     {
         // Arrange
@@ -277,9 +250,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertFalse($result);
     }
 
-    /**
-     * @return void
-     */
     public function testIsProtectedWhenMethodIsNotProtectedByRegularExpression(): void
     {
         // Arrange
@@ -302,9 +272,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertFalse($result);
     }
 
-    /**
-     * @return void
-     */
     public function testIsProtectedWhenMethodIsProtectedByRegularExpression(): void
     {
         // Arrange
@@ -327,9 +294,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertTrue($result);
     }
 
-    /**
-     * @return void
-     */
     public function testExpandApiApplicationSchemaContextDeclaredMethodsIsProtected(): void
     {
         //Arrange
@@ -352,9 +316,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertTrue($apiApplicationSchemaContextTransfer->getResourceContexts()->getArrayCopy()[0]->getDeclaredMethods()->getPost()->getIsProtected());
     }
 
-    /**
-     * @return void
-     */
     public function testExpandApiApplicationSchemaContextDeclaredMethodsIsNotProtected(): void
     {
         //Arrange
@@ -377,9 +338,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertFalse($apiApplicationSchemaContextTransfer->getResourceContexts()->getArrayCopy()[0]->getDeclaredMethods()->getPost()->getIsProtected());
     }
 
-    /**
-     * @return void
-     */
     public function testExpandApiApplicationSchemaContextCustomRouteIsProtected(): void
     {
         //Arrange
@@ -400,9 +358,6 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertTrue($apiApplicationSchemaContextTransfer->getCustomRoutesContexts()->getArrayCopy()[0]->getIsProtected());
     }
 
-    /**
-     * @return void
-     */
     public function testExpandApiApplicationSchemaContextCustomRouteIsNotProtected(): void
     {
         //Arrange

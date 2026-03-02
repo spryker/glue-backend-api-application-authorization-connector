@@ -54,9 +54,6 @@ class AuthorizationRequestAfterRoutingValidatorPluginTest extends Unit
      */
     protected const STRATEGY_NAME = 'test';
 
-    /**
-     * @return void
-     */
     public function testValidateRequestUseDefaultAuthorizationStrategyAwareResourceRoutePluginIsValid(): void
     {
         //Arrange
@@ -78,9 +75,6 @@ class AuthorizationRequestAfterRoutingValidatorPluginTest extends Unit
         $this->assertTrue($glueRequestValidationTransfer->getIsValid());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateRequestUseDefaultAuthorizationStrategyAwareResourceRoutePluginNotValid(): void
     {
         //Arrange
@@ -103,9 +97,6 @@ class AuthorizationRequestAfterRoutingValidatorPluginTest extends Unit
         $this->assertEquals('Unauthorized request.', $glueRequestValidationTransfer->getValidationError());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateRequestUseAuthorizationStrategyAwareResourceRoutePluginIsValid(): void
     {
         //Arrange
@@ -127,9 +118,6 @@ class AuthorizationRequestAfterRoutingValidatorPluginTest extends Unit
         $this->assertTrue($glueRequestValidationTransfer->getIsValid());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateRequestUseAuthorizationStrategyAwareResourceRoutePluginNotValid(): void
     {
         //Arrange
@@ -153,9 +141,6 @@ class AuthorizationRequestAfterRoutingValidatorPluginTest extends Unit
         $this->assertEquals('Unauthorized request.', $glueRequestValidationTransfer->getValidationError());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateRequestUnsupportedResourceRouteException(): void
     {
         //Arrange
@@ -176,9 +161,6 @@ class AuthorizationRequestAfterRoutingValidatorPluginTest extends Unit
         $this->assertTrue($glueRequestValidationTransfer->getIsValid());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateRequestMissingRouteNotValid(): void
     {
         //Arrange
@@ -199,9 +181,6 @@ class AuthorizationRequestAfterRoutingValidatorPluginTest extends Unit
         $this->assertFalse($glueRequestValidationTransfer->getIsValid());
     }
 
-    /**
-     * @return void
-     */
     public function testShouldSkipValidationForOptionsPreflightRequest(): void
     {
         //Arrange
@@ -215,9 +194,6 @@ class AuthorizationRequestAfterRoutingValidatorPluginTest extends Unit
         $this->assertTrue($glueRequestValidationTransfer->getIsValid());
     }
 
-    /**
-     * @return void
-     */
     public function testEnsureThatProtectedRouteAuthorizationConfigProviderPluginStackExecuted(): void
     {
         // Arrange

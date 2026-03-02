@@ -28,11 +28,6 @@ class TestAuthorizationStrategyAwareResourceRoutePlugin implements Authorization
         ];
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     *
-     * @return callable
-     */
     public function getResource(GlueRequestTransfer $glueRequestTransfer): callable
     {
         return [
@@ -41,25 +36,16 @@ class TestAuthorizationStrategyAwareResourceRoutePlugin implements Authorization
         ];
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return 'test';
     }
 
-    /**
-     * @return string
-     */
     public function getController(): string
     {
         return 'FooController';
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResourceMethodCollectionTransfer
-     */
     public function getDeclaredMethods(): GlueResourceMethodCollectionTransfer
     {
         return new GlueResourceMethodCollectionTransfer();

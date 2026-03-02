@@ -14,22 +14,11 @@ use Spryker\Glue\GlueApplicationExtension\Dependency\Plugin\ResourceInterface;
 
 class AuthorizationStrategyAwareResourceRoutePluginConfigExtractorStrategy implements ConfigExtractorStrategyInterface
 {
-    /**
-     * @param \Spryker\Glue\GlueApplicationExtension\Dependency\Plugin\ResourceInterface $resource
-     *
-     * @return bool
-     */
     public function isApplicable(ResourceInterface $resource): bool
     {
         return $resource instanceof AuthorizationStrategyAwareResourceRoutePluginInterface;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Spryker\Glue\GlueApplicationExtension\Dependency\Plugin\ResourceInterface $resource
-     *
-     * @return \Generated\Shared\Transfer\RouteAuthorizationConfigTransfer|null
-     */
     public function extractRouteAuthorizationConfigTransfer(
         GlueRequestTransfer $glueRequestTransfer,
         ResourceInterface $resource

@@ -21,19 +21,11 @@ class TestDefaultAuthorizationStrategyAwareResourceRoutePlugin implements Defaul
      */
     protected const STRATEGY_NAME = 'test';
 
-    /**
-     * @return \Generated\Shared\Transfer\RouteAuthorizationConfigTransfer
-     */
     public function getRouteAuthorizationDefaultConfiguration(): RouteAuthorizationConfigTransfer
     {
         return (new RouteAuthorizationConfigTransfer())->addStrategy(static::STRATEGY_NAME);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     *
-     * @return callable
-     */
     public function getResource(GlueRequestTransfer $glueRequestTransfer): callable
     {
         return [
@@ -42,25 +34,16 @@ class TestDefaultAuthorizationStrategyAwareResourceRoutePlugin implements Defaul
         ];
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return 'test';
     }
 
-    /**
-     * @return string
-     */
     public function getController(): string
     {
         return 'FooController';
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResourceMethodCollectionTransfer
-     */
     public function getDeclaredMethods(): GlueResourceMethodCollectionTransfer
     {
         return new GlueResourceMethodCollectionTransfer();

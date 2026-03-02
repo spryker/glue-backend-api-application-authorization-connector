@@ -32,11 +32,6 @@ class GlueBackendApiApplicationAuthorizationConnectorDependencyProvider extends 
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addProtectedPathCollectionExpanderPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_PROTECTED_PATH_COLLECTION_EXPANDER, function () {

@@ -50,19 +50,11 @@ class ProtectedPathAuthorizationExpander implements ProtectedPathAuthorizationEx
      */
     protected ProtectedPathAuthorizationCheckerInterface $protectedPathAuthorizationChecker;
 
-    /**
-     * @param \Spryker\Zed\GlueBackendApiApplicationAuthorizationConnector\Business\Processor\ProtectedPathAuthorization\Checker\ProtectedPathAuthorizationCheckerInterface $protectedPathAuthorizationChecker
-     */
     public function __construct(ProtectedPathAuthorizationCheckerInterface $protectedPathAuthorizationChecker)
     {
         $this->protectedPathAuthorizationChecker = $protectedPathAuthorizationChecker;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ApiApplicationSchemaContextTransfer $apiApplicationSchemaContextTransfer
-     *
-     * @return \Generated\Shared\Transfer\ApiApplicationSchemaContextTransfer
-     */
     public function expandApiApplicationSchemaContext(
         ApiApplicationSchemaContextTransfer $apiApplicationSchemaContextTransfer
     ): ApiApplicationSchemaContextTransfer {
@@ -83,11 +75,6 @@ class ProtectedPathAuthorizationExpander implements ProtectedPathAuthorizationEx
         return $apiApplicationSchemaContextTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ResourceContextTransfer $resourceContextTransfer
-     *
-     * @return \Generated\Shared\Transfer\ResourceContextTransfer
-     */
     protected function expandResource(ResourceContextTransfer $resourceContextTransfer): ResourceContextTransfer
     {
         $isProtected = $this->expandGlueResourceMethodCollection($resourceContextTransfer->getDeclaredMethodsOrFail(), $resourceContextTransfer->getResourceTypeOrFail());
@@ -95,11 +82,6 @@ class ProtectedPathAuthorizationExpander implements ProtectedPathAuthorizationEx
         return $resourceContextTransfer->setDeclaredMethodsOrFail($isProtected);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomRoutesContextTransfer $customRoutesContextTransfer
-     *
-     * @return \Generated\Shared\Transfer\CustomRoutesContextTransfer
-     */
     protected function expandCustomRoutesContext(CustomRoutesContextTransfer $customRoutesContextTransfer): CustomRoutesContextTransfer
     {
         if (!isset($customRoutesContextTransfer->getDefaults()[static::METHOD])) {
@@ -115,12 +97,6 @@ class ProtectedPathAuthorizationExpander implements ProtectedPathAuthorizationEx
         return $customRoutesContextTransfer->setIsProtectedOrFail($isProtected);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueResourceMethodCollectionTransfer $glueResourceMethodCollectionTransfer
-     * @param string $resourceType
-     *
-     * @return \Generated\Shared\Transfer\GlueResourceMethodCollectionTransfer
-     */
     protected function expandGlueResourceMethodCollection(
         GlueResourceMethodCollectionTransfer $glueResourceMethodCollectionTransfer,
         string $resourceType
@@ -141,11 +117,6 @@ class ProtectedPathAuthorizationExpander implements ProtectedPathAuthorizationEx
         return $glueResourceMethodCollectionTransfer;
     }
 
-    /**
-     * @param string $httpMethod
-     *
-     * @return string
-     */
     protected function getHttpMethodByResourceMethodCollectionIdentifier(string $httpMethod): string
     {
         if ($httpMethod === static::METHOD_GET_COLLECTION) {
@@ -155,12 +126,6 @@ class ProtectedPathAuthorizationExpander implements ProtectedPathAuthorizationEx
         return $httpMethod;
     }
 
-    /**
-     * @param string $httpMethod
-     * @param string $resourceType
-     *
-     * @return string
-     */
     protected function generatePath(string $httpMethod, string $resourceType): string
     {
         return in_array($httpMethod, static::RESOURCE_ID_METHODS) ?
