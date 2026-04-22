@@ -294,6 +294,51 @@ class GlueBackendApiApplicationAuthorizationConnectorFacadeTest extends Unit
         $this->assertTrue($result);
     }
 
+    public function testIsProtectedReturnsTrueWhenGetCollectionResourceMethodConfiguredAndGetHttpMethodUsed(): void
+    {
+        // Arrange
+        $this->tester->mockConfigMethod(static::CONFIG_METHOD_NAME, [
+            '/testRoute' => [
+                static::IS_REGULAR_EXPRESSION => false,
+                static::METHODS => [
+                    'getCollection',
+                ],
+            ],
+        ]);
+        $routeTransfer = (new RouteTransfer())
+            ->setRoute('/testRoute')
+            ->setMethod('GET');
+
+        // Act
+        $result = $this->tester->getFacade()->isProtected($routeTransfer);
+
+        // Assert
+        $this->assertTrue($result);
+    }
+
+    public function testAuthorizeReturnsFalseForAnonymousRequestWhenGetCollectionResourceMethodConfigured(): void
+    {
+        // Arrange
+        $this->tester->mockConfigMethod(static::CONFIG_METHOD_NAME, [
+            '/testRoute' => [
+                static::IS_REGULAR_EXPRESSION => false,
+                static::METHODS => [
+                    'getCollection',
+                ],
+            ],
+        ]);
+        $authorizationRequestTransfer = $this->tester->createAuthorizationRequestTransfer([
+            static::METHOD => 'GET',
+            static::PATH => '/testRoute',
+        ]);
+
+        // Act
+        $result = $this->tester->getFacade()->authorize($authorizationRequestTransfer);
+
+        // Assert
+        $this->assertFalse($result);
+    }
+
     public function testExpandApiApplicationSchemaContextDeclaredMethodsIsProtected(): void
     {
         //Arrange

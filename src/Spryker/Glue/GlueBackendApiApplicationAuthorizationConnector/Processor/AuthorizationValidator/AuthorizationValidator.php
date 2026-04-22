@@ -178,7 +178,7 @@ class AuthorizationValidator implements AuthorizationValidatorInterface
         $routeAuthorizationConfigTransfers[] = (new RouteAuthorizationConfigTransfer())
             ->addStrategy(static::PROTECTED_PATH_STRATEGY_NAME)
             ->setApiMessage(static::ERROR_MESSAGE_UNAUTHORIZED_REQUEST)
-            ->setHttpStatusCode(Response::HTTP_FORBIDDEN);
+            ->setHttpStatusCode(Response::HTTP_UNAUTHORIZED);
 
         foreach ($this->protectedRouteAuthorizationConfigProviderPlugins as $protectedRouteAuthorizationConfigProviderPlugin) {
             $routeAuthorizationConfigTransfers[] = $protectedRouteAuthorizationConfigProviderPlugin->provide();
@@ -299,7 +299,7 @@ class AuthorizationValidator implements AuthorizationValidatorInterface
     protected function createDefaultGlueRequestNotValidationTransfer(?string $validationErrorMessage = null, ?int $status = null): GlueRequestValidationTransfer
     {
         $validationErrorMessage = $validationErrorMessage ?? static::ERROR_MESSAGE_UNAUTHORIZED_REQUEST;
-        $status = $status ?? Response::HTTP_FORBIDDEN;
+        $status = $status ?? Response::HTTP_UNAUTHORIZED;
 
         $glueErrorTransfer = (new GlueErrorTransfer())
             ->setStatus($status)

@@ -93,7 +93,7 @@ class AuthorizationRequestAfterRoutingValidatorPluginTest extends Unit
 
         //Assert
         $this->assertFalse($glueRequestValidationTransfer->getIsValid());
-        $this->assertEquals(Response::HTTP_FORBIDDEN, $glueRequestValidationTransfer->getStatus());
+        $this->assertEquals(Response::HTTP_UNAUTHORIZED, $glueRequestValidationTransfer->getStatus());
         $this->assertEquals('Unauthorized request.', $glueRequestValidationTransfer->getValidationError());
     }
 
@@ -137,7 +137,7 @@ class AuthorizationRequestAfterRoutingValidatorPluginTest extends Unit
 
         //Assert
         $this->assertFalse($glueRequestValidationTransfer->getIsValid());
-        $this->assertEquals(Response::HTTP_FORBIDDEN, $glueRequestValidationTransfer->getStatus());
+        $this->assertEquals(Response::HTTP_UNAUTHORIZED, $glueRequestValidationTransfer->getStatus());
         $this->assertEquals('Unauthorized request.', $glueRequestValidationTransfer->getValidationError());
     }
 
@@ -181,6 +181,31 @@ class AuthorizationRequestAfterRoutingValidatorPluginTest extends Unit
         $this->assertFalse($glueRequestValidationTransfer->getIsValid());
     }
 
+    public function testValidateRequestForProtectedRouteWithoutTokenReturnsUnauthorized(): void
+    {
+        // Arrange
+        $this->tester->setDependency(
+            GlueBackendApiApplicationAuthorizationConnectorDependencyProvider::FACADE_AUTHORIZATION,
+            $this->mockAuthorizationClientBridgeWithFailedStrategy(false, 'ProtectedPath'),
+        );
+        $this->tester->setDependency(
+            GlueBackendApiApplicationAuthorizationConnectorDependencyProvider::FACADE_GLUE_BACKEND_API_APPLICATION_AUTHORIZATION_CONNECTOR,
+            $this->mockGlueBackendApiApplicationAuthorizationConnectorFacade(true),
+        );
+
+        $plugin = new AuthorizationRequestAfterRoutingValidatorPlugin();
+        $glueRequestTransfer = (new GlueRequestTransfer())->setMethod(Request::METHOD_POST);
+        $stubResource = new TestDefaultAuthorizationStrategyAwareResourceRoutePlugin();
+
+        // Act
+        $glueRequestValidationTransfer = $plugin->validate($glueRequestTransfer, $stubResource);
+
+        // Assert
+        $this->assertFalse($glueRequestValidationTransfer->getIsValid());
+        $this->assertSame(Response::HTTP_UNAUTHORIZED, $glueRequestValidationTransfer->getStatus());
+        $this->assertSame('Unauthorized request.', $glueRequestValidationTransfer->getValidationError());
+    }
+
     public function testShouldSkipValidationForOptionsPreflightRequest(): void
     {
         //Arrange
@@ -218,6 +243,31 @@ class AuthorizationRequestAfterRoutingValidatorPluginTest extends Unit
 
         // Act
         (new AuthorizationRequestAfterRoutingValidatorPlugin())->validate($glueRequestTransfer, $stubResource);
+    }
+
+    /**
+     * @param bool $isAuthorized
+     * @param string $failedStrategy
+     *
+     * @return \PHPUnit\Framework\MockObject\MockObject|\Spryker\Glue\GlueBackendApiApplicationAuthorizationConnector\Dependency\Facade\GlueBackendApiApplicationAuthorizationConnectorToAuthorizationFacadeInterface
+     */
+    protected function mockAuthorizationClientBridgeWithFailedStrategy(
+        bool $isAuthorized,
+        string $failedStrategy
+    ): GlueBackendApiApplicationAuthorizationConnectorToAuthorizationFacadeInterface {
+        $authorizationResponseTransfer = (new AuthorizationResponseTransfer())->setIsAuthorized($isAuthorized);
+
+        if (!$isAuthorized) {
+            $authorizationResponseTransfer->setFailedStrategy($failedStrategy);
+        }
+
+        $authorizationClientBridge = $this->getMockBuilder(GlueBackendApiApplicationAuthorizationConnectorToAuthorizationFacadeBridge::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['authorize'])
+            ->getMock();
+        $authorizationClientBridge->method('authorize')->willReturn($authorizationResponseTransfer);
+
+        return $authorizationClientBridge;
     }
 
     /**
